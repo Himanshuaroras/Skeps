@@ -18,7 +18,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 public class RemovePartner {
 
 	public static void main(String[] args) throws InterruptedException  {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\New Workspace\\Partnership\\exe2files\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\mylocalrepository\\Partnership\\exe2files\\chromedriver.exe");
 		
 		System.setProperty("webdriver.chrome.silentOutput", "true");
 		WebDriver driver=new ChromeDriver();
@@ -30,12 +30,14 @@ public class RemovePartner {
 		
         Thread.sleep(1000);
 		
-		driver.findElement(By.xpath("//input[@placeholder='Enter your email address']")).sendKeys("aditi@skeps.com");
+	
+		
+		
+		
+			driver.findElement(By.xpath("//input[@placeholder='Enter your email address']")).sendKeys("aditi@skeps.com");
 		driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys("Skeps@12");
 		
 		driver.findElement(By.xpath("//button[text()='Login']")).click();
-		
-		
 		
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
@@ -44,13 +46,18 @@ public class RemovePartner {
 //        driver.findElement(By.tagName("body")).sendKeys(Keys.CONTROL + "t");
 //        
 //      driver.get("http://3.13.0.189/auth/login");
+        
+        /******Click on Buy  leads*******/
 		
 		WebElement Buyleads=driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Buy Leads']"));
 		Buyleads.click();
 		
+        /******Click on Decline flow under Buy  leads*******/
+		
 		WebElement BuyleadsDeclineflow=driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Buy Leads']//following-sibling::div[1]//mat-expansion-panel-header[@page-title='Decline Flow']"));
 		BuyleadsDeclineflow.click();
 		
+        /******Click on Sellers under Decline flow*******/
 		WebElement Sellersclick=driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Buy Leads']//following-sibling::div[1]//mat-expansion-panel-header[@page-title='Decline Flow']//following-sibling::div[1]//div[@class='side-nav-sub-menu ng-star-inserted']//mat-expansion-panel-header[@page-title='Sellers']"));
 		Sellersclick.click();
 		
@@ -69,7 +76,40 @@ public class RemovePartner {
 //			
 //		}
 		
-		Boolean Removepartnerelement;
+		
+		 // Find the tootip icon at the top right of the header		
+        WebElement tootip = driver.findElement(By.xpath("//span[text()='SERF']/../../following-sibling::span[3]/span[1]/span"));	
+        
+        //get the value of the "title" attribute of the tooltip icon		
+        String actualTooltip = tootip.getAttribute("mattooltip");
+        
+       // Assert the tooltip's value is as expected 		
+            System.out.println("Actual Title of Tool Tip"+actualTooltip);
+        
+        if(actualTooltip.equals("Remove Partner"))
+        {
+        	WebElement RemovePartner=driver.findElement(By.xpath("//span[text()='SERF']/parent::span[1]/parent::span[1]/parent::span[1]//span[@class='mat-cell']//span[@mattooltip='Remove Partner']"));
+		      RemovePartner.click();
+		      
+		      WebElement RemovePartneraccept=driver.findElement(By.xpath("//button[text()=\"Yes\"]"));
+		      RemovePartneraccept.click();
+        }
+        
+        
+        else
+        	
+        {
+        	
+        	 if(actualTooltip.equals("Add Partner"))
+        		 
+        		 System.out.println("Add Partner option is there");
+        	 
+        	 else
+        	 System.out.println("Cancel Request option is there");
+        }
+     
+		
+/*		Boolean Removepartnerelement;
 		try {
 		Removepartnerelement=driver.findElement(By.xpath("//span[text()='SERF']/parent::span[1]/parent::span[1]"
 				+ "/parent::span[1]//span[@class='mat-cell']//span[@mattooltip='Remove Partner']")).isDisplayed();
@@ -98,7 +138,7 @@ public class RemovePartner {
 			  System.out.println("Add partner option present");
 			//System.out.println(e);
 		}
-		
+		*/
 		
 		Thread.sleep(1000);
 		Actions action = new Actions(driver);
@@ -136,14 +176,28 @@ public class RemovePartner {
 	    //  driver.findElement(By.xpath("//div[contains(text(),'Welcome')]")).click();
 	    //  driver.navigate().to("http://3.132.156.194/dashboard/messages/sent");
 	      driver.navigate().refresh();
-	  WebElement RemovepartnerMessage= driver.findElement(By.xpath("//div[text()='You have been removed as a Seller ']/parent::div[1]//span[text()='SERF ']//div[text()='You have been removed as a Seller ']/parent::div[1]//span[text()='SERF ']"));
+	      
+	      Thread.sleep(2000);
+	      WebElement RemovepartnerMessage=    driver.findElement(By.xpath("//div[text()='You have been removed as a Seller ']/preceding-sibling::div[@class='partner-name-wrap']//span[text()='SERF ']"));
+	//  WebElement RemovepartnerMessage= driver.findElement(By.xpath("//div[text()='You have been removed as a Seller ']/parent::div[1]//span[text()='SERF ']//div[text()='You have been removed as a Seller ']/parent::div[1]//span[text()='SERF ']"));
 	  
 	  action.moveToElement(RemovepartnerMessage).click().perform();
-	  RemovepartnerMessage.click();    
+	 // RemovepartnerMessage.click();    
+	  
+	  
+	 String LENPRemovepartnerMessage= driver.findElement(By.xpath("//span[text()=' Lending Point ']/../following-sibling::div[1]//div[text()=' You have been removed as a Seller by Lending Point ']")).getText();
+	 
+	 System.out.println(LENPRemovepartnerMessage);
 	  
 	  Thread.sleep(1000);
 	  
 	  driver.get("http://3.13.0.189/auth/login");
+	  
+	  Thread.sleep(1000);
+	  
+		driver.findElement(By.xpath("//input[@placeholder='Enter your email address']")).sendKeys("support@skeps.com");
+		driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys("Skeps@12");
+		
 
 //	String InsideremoveMessage=driver.findElement(By.xpath("//div[text()=' Partner request from Lending Point (Buyer). Please accept our request to partner with you. ']")).getText();
 //		
