@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -46,7 +48,65 @@ System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\mylocalreposi
         WebElement buyers=driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Buyers']"));
         buyers.click();
         
-   	 // Find the tootip icon at the top right of the header		
+        if(driver.getPageSource().contains("LENP"))
+        {
+        	
+        	System.out.println("Lending point is displayed");
+        	
+        	 // Find the tootip icon at the top right of the header		
+            WebElement tootip = driver.findElement(By.xpath("//span[text()='LENP']/../../following-sibling::span[4]/span/span"));	
+            
+            //get the value of the "title" attribute of the tooltip icon		
+            String actualTooltip = tootip.getAttribute("mattooltip");
+            
+           // Assert the tooltip's value is as expected 		
+                System.out.println("Actual Title of Tool Tip "+actualTooltip);
+            
+            if(actualTooltip.equals("Add Partner"))
+            {
+            	WebElement AddPartner=driver.findElement(By.xpath("//span[contains(text(),'LENP')]/../../following-sibling::span[@class='mat-cell action-col']//span[@mattooltip='Add Partner']"));
+            	 AddPartner.click();
+    		      
+    		      WebElement AddPartnerSubmit=driver.findElement(By.xpath("//button[text()='Submit']"));
+    		      AddPartnerSubmit.click();
+    		      
+    		      
+    		      SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
+
+    		      Date now = new Date();
+
+    		      String strTime = sdfTime.format(now);
+
+    		      System.out.println("Time: " + strTime);
+            }
+            
+            
+            else
+            	
+            {
+            	
+            	 if(actualTooltip.equals("Remove Partner"))
+            		 
+            		 System.out.println("Remove Partner option is there");
+            	 
+            	 else
+            	 {
+            	 System.out.println("Cancel Request option is there");
+            	 }
+            }
+         
+            
+        }
+        else
+        {
+        	System.out.println("Lending point is not displayed");
+        }
+        
+	}
+	
+
+
+  /* 	 // Find the tootip icon at the top right of the header		
         WebElement tootip = driver.findElement(By.xpath("//span[text()='LENP']/../../following-sibling::span[4]/span/span"));	
         
         //get the value of the "title" attribute of the tooltip icon		
@@ -62,6 +122,15 @@ System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\mylocalreposi
 		      
 		      WebElement AddPartnerSubmit=driver.findElement(By.xpath("//button[text()='Submit']"));
 		      AddPartnerSubmit.click();
+		      
+		      
+		      SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
+
+		      Date now = new Date();
+
+		      String strTime = sdfTime.format(now);
+
+		      System.out.println("Time: " + strTime);
         }
         
         
@@ -96,7 +165,7 @@ System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\mylocalreposi
       
       
       
-      
+      */
       
       
       
@@ -119,10 +188,12 @@ System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\mylocalreposi
 //       }
 //       
         
-        */
        
-       
-       
-	}
-
+        
 }
+       
+       
+       
+	
+
+

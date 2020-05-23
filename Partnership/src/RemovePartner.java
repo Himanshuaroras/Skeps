@@ -78,7 +78,7 @@ public class RemovePartner {
 		
 		
 		 // Find the tootip icon at the top right of the header		
-        WebElement tootip = driver.findElement(By.xpath("//span[text()='SERF']/../../following-sibling::span[3]/span[1]/span"));	
+        WebElement tootip = driver.findElement(By.xpath("//span[text()='SERF']/../../following-sibling::span[@class='mat-cell']/span[1]/span"));	
         
         //get the value of the "title" attribute of the tooltip icon		
         String actualTooltip = tootip.getAttribute("mattooltip");

@@ -31,6 +31,11 @@ public class CancelRequest {
         
         Thread.sleep(20000);
 		
+        if(driver.getPageSource().contains("LENP"))
+        {
+        	
+        	System.out.println("Lending point is displayed");
+        	
         
         WebElement sellleads= driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Sell Leads']"));
         sellleads.click();
@@ -62,8 +67,35 @@ public class CancelRequest {
 		      WebDriverWait waitforCancelRequest= new WebDriverWait(driver, 20);
 		      waitforCancelRequest.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-expansion-panel-header[@page-title='Buyers']")));
 		      
+		      WebElement tootip2 = driver.findElement(By.xpath("//span[text()='LENP']/../../following-sibling::span[4]/span/span"));
+		      
+		    //get the value of the "title" attribute of the tooltip icon		
+		       String actualTooltipAfterChange = tootip2.getAttribute("mattooltip");
+
+		            // Assert the tooltip's value is as expected 		
+		       System.out.println("Actual Title of Tool Tip "+actualTooltipAfterChange);
+		       
+		       if(actualTooltip.equals("Cancel Request"))
+		       {
+		      
 		      WebElement CancelRequest=driver.findElement(By.xpath("//span[contains(text(),'LENP')]/../../following-sibling::span[@class='mat-cell action-col']//span[@mattooltip='Cancel Request']"));
 		      CancelRequest.click();
+		      
+		       }
+		       
+		       else
+		       {
+		    	   
+		    	   if(actualTooltip.equals("Remove Partner"))
+		         		 
+		         		 System.out.println("Remove Partner option is there");
+		         	 
+		    	   else
+		    	   {
+		    		   System.out.println("Add Partner option is there");
+		    	   }
+		    	   
+		       }
 		      
        }
        
@@ -80,7 +112,12 @@ public class CancelRequest {
        	 System.out.println("Cancel Request option is there");
        }
     
-
+        }
+        
+        else
+        {
+        	System.out.println("Lending Point is not displayed");
+        }
 
 	}
 
