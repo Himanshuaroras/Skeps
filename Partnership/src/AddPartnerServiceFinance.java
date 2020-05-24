@@ -13,7 +13,7 @@ public class AddPartnerServiceFinance {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\mylocalrepository\\Partnership\\exe2files\\chromedriver.exe");
+System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\Skeps\\Partnership\\exe2files\\chromedriver.exe");
 		
 		System.setProperty("webdriver.chrome.silentOutput", "true");
 		WebDriver driver=new ChromeDriver();

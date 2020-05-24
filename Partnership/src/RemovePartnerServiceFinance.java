@@ -14,7 +14,7 @@ public class RemovePartnerServiceFinance {
 
 	public static void main(String[] args) throws InterruptedException {
 	
-	System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\mylocalrepository\\Partnership\\exe2files\\chromedriver.exe");
+	System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\Skeps\\Partnership\\exe2files\\chromedriver.exe");
 		
 		System.setProperty("webdriver.chrome.silentOutput", "true");
 		WebDriver driver=new ChromeDriver();
@@ -66,7 +66,7 @@ public class RemovePartnerServiceFinance {
 //		
 //	}
     
-    
+    /************************Click on Sell Leads***************************/
 	 WebElement sellleads= driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Sell Leads']"));
      sellleads.click();
      
