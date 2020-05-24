@@ -30,6 +30,21 @@ public class CancelRequest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         
         Thread.sleep(20000);
+        
+        
+        /************************Click on Sell Leads***************************/
+  	  WebElement sellleads= driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Sell Leads']"));
+  	     sellleads.click();
+  	     
+  	   //  Thread.sleep(1000);
+  	     
+  	     /**********wait for buyer element ***********************/
+  	     
+  	     WebDriverWait wait= new WebDriverWait(driver, 20);
+  			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-expansion-panel-header[@page-title='Buyers']")));
+  	     
+  	     WebElement BUYERS=driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Buyers']"));
+  	     BUYERS.click();
 		
         if(driver.getPageSource().contains("LENP"))
         {
@@ -37,14 +52,6 @@ public class CancelRequest {
         	System.out.println("Lending point is displayed");
         	
         
-        WebElement sellleads= driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Sell Leads']"));
-        sellleads.click();
-        
-        WebDriverWait wait= new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-expansion-panel-header[@page-title='Buyers']")));
-
-       WebElement buyers=driver.findElement(By.xpath("//mat-expansion-panel-header[@page-title='Buyers']"));
-       buyers.click();
 
               // Find the tootip icon at the top right of the header		
        WebElement tootip = driver.findElement(By.xpath("//span[text()='LENP']/../../following-sibling::span[4]/span/span"));	
@@ -75,7 +82,7 @@ public class CancelRequest {
 		            // Assert the tooltip's value is as expected 		
 		       System.out.println("Actual Title of Tool Tip "+actualTooltipAfterChange);
 		       
-		       if(actualTooltip.equals("Cancel Request"))
+		       if(actualTooltipAfterChange.equals("Cancel Request"))
 		       {
 		      
 		      WebElement CancelRequest=driver.findElement(By.xpath("//span[contains(text(),'LENP')]/../../following-sibling::span[@class='mat-cell action-col']//span[@mattooltip='Cancel Request']"));
@@ -86,7 +93,7 @@ public class CancelRequest {
 		       else
 		       {
 		    	   
-		    	   if(actualTooltip.equals("Remove Partner"))
+		    	   if(actualTooltipAfterChange.equals("Remove Partner"))
 		         		 
 		         		 System.out.println("Remove Partner option is there");
 		         	 

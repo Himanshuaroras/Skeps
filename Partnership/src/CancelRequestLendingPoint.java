@@ -54,6 +54,8 @@ System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\git\\Skeps\\Partne
 		 driver.navigate().refresh();
 		 
 		 Thread.sleep(2000);
+		 
+		 
 
 	}
 
